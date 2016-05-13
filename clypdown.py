@@ -18,6 +18,7 @@ def download(mp3_url, title):
                     f.flush()
     except Exception, e:
         print "{-} Something has gone horribly wrong! Please report on the github issue tracker with the following backtrace: \n%s" %(e)
+        sys.exit(1)
     print "{*} Done!"
     
 def get_mp3_url(url):
@@ -26,6 +27,7 @@ def get_mp3_url(url):
         r = requests.get(url="https://api.clyp.it/%s" %(content_id))    
     except Exception, e:
         print "{-} Something has gone horribly wrong! Please report on the github issue tracker with the following backtrace: \n%s" %(e)
+        sys.exit(1)
     fucking_json = json.loads(r.text)
     song_title = fucking_json['Title']
     mp3_url = fucking_json['Mp3Url']
